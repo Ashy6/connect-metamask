@@ -299,6 +299,8 @@ const styles = {
     boxSizing: 'border-box'
   },
   button: {
+    marginTop: '12px',
+    marginBottom: '12px',
     padding: '10px 20px',
     fontSize: '14px',
     fontWeight: '600',
@@ -327,6 +329,7 @@ const styles = {
   },
   result: {
     marginTop: '12px',
+    marginBottom: '12px',
     padding: '12px',
     backgroundColor: '#f0fdf4',
     borderRadius: '6px',
