@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WalletConnect from './components/WalletConnect';
 import ChainDataDisplay from './components/ChainDataDisplay';
-import GraphDataDisplay from './components/GraphDataDisplay';
+// import GraphDataDisplay from './components/GraphDataDisplay';
 import HexConverterDemo from './components/HexConverterDemo';
 
 /**
@@ -16,7 +16,8 @@ function App() {
       <header style={styles.header}>
         <h1 style={styles.headerTitle}>🔗 Web3 DApp 示例</h1>
         <p style={styles.headerSubtitle}>
-          MetaMask 连接 + Ethers.js + The Graph
+          MetaMask 连接 + Ethers.js 
+          {/* + The Graph */}
         </p>
       </header>
 
@@ -40,7 +41,7 @@ function App() {
         >
           ⛓️ Ethers.js 数据
         </button>
-        <button
+        {/* <button
           onClick={() => setActiveView('graph')}
           style={{
             ...styles.navButton,
@@ -48,7 +49,7 @@ function App() {
           }}
         >
           📊 The Graph 数据
-        </button>
+        </button> */}
         <button
           onClick={() => setActiveView('hexConverter')}
           style={{
@@ -64,19 +65,20 @@ function App() {
       <main style={styles.main}>
         {activeView === 'wallet' && <WalletConnect />}
         {activeView === 'ethers' && <ChainDataDisplay />}
-        {activeView === 'graph' && <GraphDataDisplay />}
+        {/* {activeView === 'graph' && <GraphDataDisplay />} */}
         {activeView === 'hexConverter' && <HexConverterDemo />}
       </main>
 
       {/* 底部 */}
       <footer style={styles.footer}>
         <p style={styles.footerText}>
-          Built with React + Ethers.js + The Graph
+          Built with React + Ethers.js
+           {/* + The Graph */}
         </p>
         <div style={styles.features}>
           <span style={styles.feature}>✅ MetaMask 集成</span>
           <span style={styles.feature}>✅ 链上数据读取</span>
-          <span style={styles.feature}>✅ The Graph 查询</span>
+          {/* <span style={styles.feature}>✅ The Graph 查询</span> */}
           <span style={styles.feature}>✅ 16进制转换工具</span>
         </div>
       </footer>
