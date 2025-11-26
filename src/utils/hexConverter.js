@@ -4,25 +4,25 @@
  */
 
 /**
- * 字符串转16进制
+ * 字符串转16进制 (自动使用UTF-8编码，支持中文等多字节字符)
  * @param {string} str - 要转换的字符串
  * @returns {string} 16进制字符串
  */
 export const stringToHex = (str) => {
   if (!str) return '';
 
-  let hex = '';
-  for (let i = 0; i < str.length; i++) {
-    const charCode = str.charCodeAt(i);
-    const hexValue = charCode.toString(16);
-    // 补齐两位
-    hex += hexValue.padStart(2, '0');
-  }
-  return '0x' + hex;
+  // 使用 UTF-8 编码以支持所有字符
+  const encoder = new TextEncoder();
+  const bytes = encoder.encode(str);
+
+  const hexArray = Array.from(bytes)
+    .map(byte => byte.toString(16).padStart(2, '0'));
+
+  return '0x' + hexArray.join('');
 };
 
 /**
- * 16进制转字符串
+ * 16进制转字符串 (自动使用UTF-8解码，支持中文等多字节字符)
  * @param {string} hex - 16进制字符串 (可以带0x前缀)
  * @returns {string} 解码后的字符串
  */
@@ -32,13 +32,15 @@ export const hexToString = (hex) => {
   // 移除0x前缀
   const cleanHex = hex.startsWith('0x') ? hex.slice(2) : hex;
 
-  let str = '';
+  // 转换为字节数组
+  const bytes = new Uint8Array(cleanHex.length / 2);
   for (let i = 0; i < cleanHex.length; i += 2) {
-    const hexValue = cleanHex.substr(i, 2);
-    const decimalValue = parseInt(hexValue, 16);
-    str += String.fromCharCode(decimalValue);
+    bytes[i / 2] = parseInt(cleanHex.substring(i, i + 2), 16);
   }
-  return str;
+
+  // 使用 UTF-8 解码
+  const decoder = new TextDecoder();
+  return decoder.decode(bytes);
 };
 
 /**
@@ -91,7 +93,7 @@ export const hexToBuffer = (hex) => {
   const bytes = new Uint8Array(cleanHex.length / 2);
 
   for (let i = 0; i < cleanHex.length; i += 2) {
-    bytes[i / 2] = parseInt(cleanHex.substr(i, 2), 16);
+    bytes[i / 2] = parseInt(cleanHex.substring(i, i + 2), 16);
   }
 
   return bytes;

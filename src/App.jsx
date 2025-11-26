@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import WalletConnect from './components/WalletConnect';
 import ChainDataDisplay from './components/ChainDataDisplay';
 import GraphDataDisplay from './components/GraphDataDisplay';
+import HexConverterDemo from './components/HexConverterDemo';
 
 /**
  * 主应用组件
@@ -48,6 +49,15 @@ function App() {
         >
           📊 The Graph 数据
         </button>
+        <button
+          onClick={() => setActiveView('hexConverter')}
+          style={{
+            ...styles.navButton,
+            ...(activeView === 'hexConverter' ? styles.navButtonActive : {})
+          }}
+        >
+          🔧 Hex 转换器
+        </button>
       </nav>
 
       {/* 主内容区 */}
@@ -55,6 +65,7 @@ function App() {
         {activeView === 'wallet' && <WalletConnect />}
         {activeView === 'ethers' && <ChainDataDisplay />}
         {activeView === 'graph' && <GraphDataDisplay />}
+        {activeView === 'hexConverter' && <HexConverterDemo />}
       </main>
 
       {/* 底部 */}

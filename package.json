@@ -1,12 +1,14 @@
 {
   "name": "connect-metamask",
   "version": "1.0.0",
+  "type": "module",
   "description": "React application with MetaMask integration, Ethers.js and The Graph",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:hex": "node src/utils/hexConverter.test.js"
   },
   "dependencies": {
     "react": "^18.2.0",
